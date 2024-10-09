@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define TAMANHO_ARRAY 10
 
@@ -10,6 +11,26 @@ typedef struct {
 
 } Pilha;
 
+bool estaVazia(Pilha *pilha) {
+
+    if (pilha->topo == 0) {
+        return true;
+    }
+
+    return false;
+
+}
+
+bool estaCheia(Pilha *pilha) {
+
+    if (pilha->topo == TAMANHO_ARRAY) {
+        return true;
+    }
+
+    return false;
+
+}
+
 void inicializaPilha(Pilha *pilha) {
 
     pilha->topo = 0;
@@ -18,7 +39,7 @@ void inicializaPilha(Pilha *pilha) {
 
 void push(Pilha *pilha, int elemento) {
 
-    if (pilha->topo < TAMANHO_ARRAY) {
+    if (!estaCheia(pilha)) {
         pilha->array[pilha->topo] = elemento;
         pilha->topo++;
     } else {
@@ -29,10 +50,10 @@ void push(Pilha *pilha, int elemento) {
 
 void pop(Pilha *pilha) {
 
-    if (pilha->topo > 0) {
+    if (!estaVazia(pilha)) {
         pilha->topo--;
         printf("%d\n", pilha->array[pilha->topo]);
-        pilha->array[pilha->topo] = 0;        
+        pilha->array[pilha->topo] = 0;  // usa 0 como valor "nulo"
     } else {
         printf("Pilha vazia!\n");
     }
@@ -59,7 +80,7 @@ int main() {
 
     inicializaPilha(&pilha);
 
-    //testa push
+    // testa push
     for (int i = 0; i < TAMANHO_ARRAY; i++) {
 
         push(&pilha, i);
@@ -68,7 +89,7 @@ int main() {
 
     imprimePilha(pilha);
 
-    //testa pop
+    // testa pop
     for (int i = TAMANHO_ARRAY; i > 0; i--) {
         pop(&pilha);
     }
