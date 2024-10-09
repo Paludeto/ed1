@@ -23,7 +23,7 @@ bool estaVazia(Pilha *pilha) {
 
 bool estaCheia(Pilha *pilha) {
 
-    if (pilha->topo == TAMANHO_ARRAY) {
+    if (pilha->topo == TAMANHO_ARRAY + 1) {
         return true;
     }
 
@@ -58,6 +58,16 @@ void pop(Pilha *pilha) {
         printf("Pilha vazia!\n");
     }
     
+}
+
+void peek(Pilha *pilha) {
+
+    if (!estaVazia(pilha)) {
+        printf("%d\n", pilha->array[pilha->topo - 1]);
+    } else {
+        printf("Pilha vazia!\n");
+    }
+
 }
 
 void imprimePilha(Pilha pilha) {
@@ -95,6 +105,16 @@ int main() {
     }
     
     imprimePilha(pilha);
+
+    peek(&pilha);
+
+    push(&pilha, 10);
+
+    imprimePilha(pilha);
+
+    printf("%d\n", pilha.topo);
+
+    peek(&pilha);
 
     return 0;
 
