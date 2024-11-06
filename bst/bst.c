@@ -52,6 +52,26 @@ void insereElemento(Node **no, int key) {
 
 }
 
+void buscarElemento(Node **raiz, int key) {
+
+    if (estaVazia(raiz)) {
+        printf("Elemento %d não encontrado\n", key);
+        return;
+    }
+
+    if (key == (*raiz)->chave) {
+        printf("Elemento %d encontrado\n", key);
+        return;
+    }
+
+    if (key < (*raiz)->chave) {
+        buscarElemento(&(*raiz)->esquerda, key);
+    } else {
+        buscarElemento(&(*raiz)->direita, key);
+    }
+
+}
+
 void preOrdem(Node **raiz) {
 
     if (estaVazia((raiz))) {
@@ -120,6 +140,8 @@ int main() {
     printf("Em ordem: ");
     emOrdem(&raiz);
     printf("\n");
+
+    buscarElemento(&raiz, 42);
 
     return 0;
 
