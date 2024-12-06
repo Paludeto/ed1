@@ -1,2 +1,2 @@
 # ed1
-Disciplina de Estruturas de Dados, ministrada na UTFPR, câmpus Apucarana. 
+Disciplina de Estruturas de Dados 1, ministrada na UTFPR, câmpus Apucarana. 
