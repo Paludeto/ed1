@@ -150,6 +150,17 @@ void bfs(Grafo *grafo, int vertice) {
             }
         }
 
+        if (fila_vazia(&fila)) {
+
+            for (int i = 0; i < grafo->num_vert; i++) {
+                if (visitados[i] == 0) {
+                    visitados[i] = 1;
+                    adiciona_fila(&fila, i);
+                }
+            }
+
+        }
+
     }
 
 }
@@ -160,7 +171,6 @@ int main() {
     Fila fila;
 
     inicializa_fila(&fila);
-    adiciona_fila(&fila, 1);
     inicializa_grafo(&grafo, 6, false);
 
     /*
