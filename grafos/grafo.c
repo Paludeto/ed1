@@ -245,24 +245,16 @@ void dfs(Grafo *grafo, int src) {
             }
         }
 
-    }
-
-    // vertices desconexos
-    for (int i = 0; i < grafo->num_vert; i++) {
-        if (!visitados[i]) {
-            empilha(&pilha, i);
-            visitados[i] = 1;
-            while (!pilha_vazia(&pilha)) {
-                int vert = desempilha(&pilha);
-                printf("%d ", vert);
-                for (int j = grafo->num_vert - 1; j >= 0; j--) {
-                    if (grafo->matriz_adj[vert][j] == 1 && !visitados[j]) {
-                        empilha(&pilha, j);
-                        visitados[j] = 1;
-                    }
+        if (pilha_vazia(&pilha)) {
+            for (int i = 0; i < grafo->num_vert; i++) {
+                if (visitados[i] == 0) {
+                    visitados[i] = 1;
+                    empilha(&pilha, i);
+                    break;
                 }
             }
         }
+
     }
 
     printf("\n");
